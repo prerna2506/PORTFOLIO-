@@ -62,7 +62,7 @@ export default function Projects() {
         <div className="mb-16 p-8 md:p-12 rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-xl relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[100px] -mr-40 -mt-40 transition-all duration-700 group-hover:bg-orange-500/20" />
           <div className="flex flex-col lg:flex-row gap-12 relative z-10 items-center">
-            
+
             {/* Content */}
             <div className="flex-1 space-y-8">
               <div className="inline-block px-4 py-1.5 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-widest">
@@ -74,7 +74,7 @@ export default function Projects() {
               <p className="text-xl text-neutral-300 font-light leading-relaxed">
                 A full-stack, "Typeform-style" contact system featuring real-time DB insertion, Resend email automation, smart AI replies, and a secure Admin Analytics Dashboard.
               </p>
-              
+
               <div className="flex flex-wrap gap-2">
                 {["Next.js", "Supabase", "Resend", "Tailwind CSS", "React State"].map(tech => (
                   <span key={tech} className="px-4 py-1.5 rounded-full bg-black/40 border border-white/5 text-white/80 text-sm font-medium">
@@ -82,7 +82,7 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-              
+
               <div className="flex flex-wrap gap-4 pt-4">
                 <a href="/form" className="px-8 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold transition-all shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)]">
                   Live Demo
@@ -95,7 +95,7 @@ export default function Projects() {
 
             {/* Image Showcase */}
             <div className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700">
-              <img src="/admin dashboard.png" alt="Admin Dashboard" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+              <img src="public/admin dashboard.png" alt="Admin Dashboard" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
             </div>
           </div>
         </div>
@@ -104,20 +104,20 @@ export default function Projects() {
         <h3 className="text-2xl font-bold text-white mb-8">Other Explorations</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PROJECTS.map((project) => (
-            <a 
-              key={project.id} 
+            <a
+              key={project.id}
               href={project.link}
               className="group relative flex flex-col gap-5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-500 overflow-hidden"
             >
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-800">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
               </div>
-              
+
               <div className="flex justify-between items-center px-2 pb-2">
                 <div>
                   <h3 className="text-xl font-medium text-white mb-1 group-hover:text-neutral-200 transition-colors">
@@ -127,7 +127,7 @@ export default function Projects() {
                     {project.category}
                   </p>
                 </div>
-                
+
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
                   <ArrowUpRight className="w-5 h-5" />
                 </div>
