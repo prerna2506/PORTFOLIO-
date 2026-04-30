@@ -39,20 +39,20 @@ export default function Overlay() {
           </p>
           <div className="flex items-center justify-center gap-4 pointer-events-auto">
             <a 
-              href="https://github.com/prerna2506?tab=repositories" 
+              href="https://github.com/prerna2506/PORTFOLIO-" 
               target="_blank" 
               rel="noopener noreferrer"
               className="px-6 py-2.5 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-colors text-sm font-medium tracking-wide backdrop-blur-sm"
             >
-              GitHub
+              Source Code
             </a>
             <a 
-              href="https://vercel.com/prerna2506s-projects" 
+              href="https://portfolio-phi-seven-ba7rxhbca6.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-6 py-2.5 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-colors text-sm font-medium tracking-wide backdrop-blur-sm"
+              className="px-6 py-2.5 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-colors text-sm font-medium tracking-wide backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]"
             >
-              Vercel
+              Live Demo
             </a>
             <a 
               href="https://www.linkedin.com/in/prerna-singh1/" 
