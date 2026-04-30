@@ -51,13 +51,57 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-            Selected Work
+            Featured Products
           </h2>
           <p className="text-xl text-neutral-400 font-light max-w-2xl">
-            A collection of recent projects focusing on seamless interaction, stunning aesthetics, and modern web technologies.
+            A collection of production-ready products focusing on seamless interaction, robust backend integration, and stunning aesthetics.
           </p>
         </div>
 
+        {/* Featured Project */}
+        <div className="mb-16 p-8 md:p-12 rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[100px] -mr-40 -mt-40 transition-all duration-700 group-hover:bg-orange-500/20" />
+          <div className="flex flex-col lg:flex-row gap-12 relative z-10 items-center">
+            
+            {/* Content */}
+            <div className="flex-1 space-y-8">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-widest">
+                🏆 Featured Project
+              </div>
+              <h3 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                Premium Contact System 🚀
+              </h3>
+              <p className="text-xl text-neutral-300 font-light leading-relaxed">
+                A full-stack, "Typeform-style" contact system featuring real-time DB insertion, Resend email automation, smart AI replies, and a secure Admin Analytics Dashboard.
+              </p>
+              
+              <div className="flex flex-wrap gap-2">
+                {["Next.js", "Supabase", "Resend", "Tailwind CSS", "React State"].map(tech => (
+                  <span key={tech} className="px-4 py-1.5 rounded-full bg-black/40 border border-white/5 text-white/80 text-sm font-medium">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a href="/form" className="px-8 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold transition-all shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)]">
+                  Live Demo
+                </a>
+                <a href="https://github.com/prerna2506/PORTFOLIO-" target="_blank" rel="noopener noreferrer" className="px-8 py-3.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-semibold transition-colors">
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+
+            {/* Image Showcase */}
+            <div className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700">
+              <img src="/admin dashboard.png" alt="Admin Dashboard" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+            </div>
+          </div>
+        </div>
+
+        {/* Other Projects Grid */}
+        <h3 className="text-2xl font-bold text-white mb-8">Other Explorations</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PROJECTS.map((project) => (
             <a 
