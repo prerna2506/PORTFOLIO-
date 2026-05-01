@@ -4,13 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const TECH_STACK = [
-  { name: "React", color: "#3b82f6" },
+  { name: "HTML5", color: "#e34f26" },
+  { name: "CSS3", color: "#1572b6" },
+  { name: "JavaScript", color: "#f7df1e" },
+  { name: "React.js", color: "#61dafb" },
   { name: "Next.js", color: "#ffffff" },
-  { name: "TypeScript", color: "#2563eb" },
-  { name: "Node.js", color: "#22c55e" },
-  { name: "Tailwind", color: "#06b6d4" },
-  { name: "Supabase", color: "#10b981" },
-  { name: "Framer", color: "#a855f7" },
+  { name: "Tailwind CSS", color: "#06b6d4" },
+  { name: "Git", color: "#f05032" },
+  { name: "Vercel", color: "#ffffff" },
+  { name: "Figma", color: "#f24e1e" },
+  { name: "REST APIs", color: "#22c55e" },
 ];
 
 export default function TechStackGame() {
