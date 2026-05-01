@@ -39,8 +39,8 @@ export async function POST(req: Request) {
 
     // 📩 2. Email to YOU
     await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
-      to: ["prerna2506@example.com"], // 🔥 replace with your email
+      from: "Portfolio <prernas278@gmail.com>",
+      to: ["workprerna6@gmail.com"],
       subject: `New Contact: ${body.name}`,
       html: `
         <h2>New Contact Submission</h2>
@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 
     // 🧠 AI Auto-Reply (Smart Responses based on Purpose)
     let smartResponse = "I'll get back to you soon... unless I get kidnapped by bugs in my code 🐛";
-    
+
     if (body.purpose === "Project") {
       smartResponse = "I absolutely love discussing new projects! I'll review your timeline and budget and get back to you with some initial thoughts shortly. 🚀";
     } else if (body.purpose === "Networking") {
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
 
     // ✉️ 3. Auto reply to USER
     await resend.emails.send({
-      from: "Prerna <onboarding@resend.dev>",
+      from: "Prerna <workprerna6@gmail.com>",
       to: [body.email],
       subject: "Got your message 😄",
       html: `

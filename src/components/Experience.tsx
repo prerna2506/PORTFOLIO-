@@ -1,3 +1,6 @@
+"use client";
+import { motion } from "framer-motion";
+
 export default function Experience() {
   const experiences = [
     {
@@ -39,16 +42,29 @@ export default function Experience() {
   ];
 
   return (
-    <section className="bg-[#121212] py-32 px-8 md:px-24 border-t border-white/5 relative z-20">
+    <section className="bg-[#121212] py-20 md:py-32 px-8 md:px-24 border-t border-white/5 relative z-20">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-16">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-16"
+        >
           Experience
-        </h2>
+        </motion.h2>
 
         <div className="space-y-16">
-          {experiences.map((exp) => (
-            <div key={exp.id} className="relative border-l border-white/10 pl-8 ml-4">
-              <div className="absolute w-4 h-4 bg-white rounded-full -left-[9px] top-2" />
+          {experiences.map((exp, index) => (
+            <motion.div 
+              key={exp.id} 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="relative border-l border-white/10 pl-8 ml-4 group hover:border-orange-500/50 transition-colors duration-500"
+            >
+              <div className="absolute w-4 h-4 bg-white group-hover:bg-orange-500 transition-colors duration-500 rounded-full -left-[9px] top-2 shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:shadow-[0_0_15px_rgba(249,115,22,0.8)]" />
 
               <div className="mb-2">
                 <span className="text-sm text-neutral-400 font-mono tracking-wider">{exp.date}</span>
@@ -61,7 +77,7 @@ export default function Experience() {
                   <li key={i}>{point}</li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

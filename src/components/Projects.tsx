@@ -1,4 +1,6 @@
+"use client";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const PROJECTS = [
   {
@@ -47,19 +49,31 @@ const PROJECTS = [
 
 export default function Projects() {
   return (
-    <section className="bg-[#121212] min-h-screen py-32 px-8 md:px-24 border-t border-white/5 relative z-20">
+    <section className="bg-[#121212] min-h-screen py-20 md:py-32 px-8 md:px-24 border-t border-white/5 relative z-20">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
             Featured Products
           </h2>
           <p className="text-xl text-neutral-400 font-light max-w-2xl">
             A collection of production-ready products focusing on seamless interaction, robust backend integration, and stunning aesthetics.
           </p>
-        </div>
+        </motion.div>
 
         {/* Featured Project */}
-        <div className="mb-16 p-8 md:p-12 rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-xl relative overflow-hidden group">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-16 p-8 md:p-12 rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-xl relative overflow-hidden group"
+        >
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[100px] -mr-40 -mt-40 transition-all duration-700 group-hover:bg-orange-500/20" />
           <div className="flex flex-col lg:flex-row gap-12 relative z-10 items-center">
 
@@ -94,19 +108,28 @@ export default function Projects() {
             </div>
 
             {/* Image Showcase */}
-            <div className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700">
+            <motion.div 
+              animate={{ y: [0, -15, 0] }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700"
+            >
               <img src="public/admin dashboard.png" alt="Admin Dashboard" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Other Projects Grid */}
         <h3 className="text-2xl font-bold text-white mb-8">Other Explorations</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((project) => (
-            <a
+          {PROJECTS.map((project, i) => (
+            <motion.a
               key={project.id}
               href={project.link}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -10 }}
               className="group relative flex flex-col gap-5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-500 overflow-hidden"
             >
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-800">
@@ -132,7 +155,7 @@ export default function Projects() {
                   <ArrowUpRight className="w-5 h-5" />
                 </div>
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>
