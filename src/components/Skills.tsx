@@ -12,6 +12,22 @@ export default function Skills() {
       skills: ["React.js", "Next.js", "Tailwind CSS"]
     },
     {
+      title: "Backend & Database",
+      skills: ["Supabase", "API"]
+    },
+    {
+      title: "Services & Integration",
+      skills: ["Resend", "Flow"]
+    },
+    {
+      title: "AI & Code Generation",
+      skills: ["Claude", "Codex", "Antigravity", "Flow", "Google Whisk"]
+    },
+    {
+      title: "SEO & Performance",
+      skills: ["SEO"]
+    },
+    {
       title: "Tools & Deployment",
       skills: ["Git", "Vercel"]
     }
@@ -32,7 +48,7 @@ export default function Skills() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
           {skillCategories.map((category, catIdx) => (
             <motion.div
               key={catIdx}
