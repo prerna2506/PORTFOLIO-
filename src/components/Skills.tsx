@@ -4,20 +4,16 @@ import { motion } from "framer-motion";
 export default function Skills() {
   const skillCategories = [
     {
-      title: "🌐 Frontend Development",
-      skills: ["HTML5", "CSS3 (Flexbox, Grid)", "JavaScript (ES6+)", "Responsive Web Design"]
+      title: "Core Web",
+      skills: ["HTML", "CSS", "JavaScript"]
     },
     {
-      title: "⚛️ Frameworks & Libraries",
+      title: "Frameworks & Libraries",
       skills: ["React.js", "Next.js", "Tailwind CSS"]
     },
     {
-      title: "🛠️ Tools & Workflow",
-      skills: ["Git & GitHub", "Vercel (Deployment)", "Figma (UI/UX Design)", "Chrome DevTools"]
-    },
-    {
-      title: "🔌 Additional Skills",
-      skills: ["API Integration (REST APIs)", "Basic SEO Optimization", "Performance Optimization", "Cross-browser Compatibility"]
+      title: "Tools & Deployment",
+      skills: ["Git", "Vercel"]
     }
   ];
 
@@ -32,11 +28,8 @@ export default function Skills() {
           className="mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
-            Skills & Expertise
+            Tech Stack
           </h2>
-          <p className="text-lg text-neutral-400 font-light max-w-2xl">
-            A comprehensive overview of my technical toolset and workflow capabilities.
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
