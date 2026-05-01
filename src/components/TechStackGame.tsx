@@ -108,18 +108,15 @@ export default function TechStackGame() {
     setIsLoaded(true);
 
     // Sync DOM Elements with Physics Bodies
-    const domElements = techBodies.map((tb, index) => {
-      const el = document.getElementById(`tech-body-${index}`);
-      return { el, body: tb.body };
-    });
-
+    let animationFrameId: number;
     const syncDOM = () => {
-      domElements.forEach(({ el, body }) => {
+      techBodies.forEach(({ body }, index) => {
+        const el = document.getElementById(`tech-body-${index}`);
         if (el) {
           el.style.transform = `translate(${body.position.x - el.offsetWidth / 2}px, ${body.position.y - el.offsetHeight / 2}px) rotate(${body.angle}rad)`;
         }
       });
-      requestAnimationFrame(syncDOM);
+      animationFrameId = requestAnimationFrame(syncDOM);
     };
 
     syncDOM();
@@ -127,15 +124,18 @@ export default function TechStackGame() {
     // Handle Resize
     const handleResize = () => {
       if (sceneRef.current) {
-        render.canvas.width = sceneRef.current.clientWidth;
-        render.canvas.height = sceneRef.current.clientHeight;
-        Matter.Body.setPosition(ground, { x: sceneRef.current.clientWidth / 2, y: sceneRef.current.clientHeight + 50 });
-        Matter.Body.setPosition(rightWall, { x: sceneRef.current.clientWidth + 50, y: sceneRef.current.clientHeight / 2 });
+        const newWidth = sceneRef.current.clientWidth;
+        const newHeight = sceneRef.current.clientHeight;
+        render.canvas.width = newWidth;
+        render.canvas.height = newHeight;
+        Matter.Body.setPosition(ground, { x: newWidth / 2, y: newHeight + 50 });
+        Matter.Body.setPosition(rightWall, { x: newWidth + 50, y: newHeight / 2 });
       }
     };
     window.addEventListener("resize", handleResize);
 
     return () => {
+      cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);
