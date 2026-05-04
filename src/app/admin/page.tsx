@@ -22,7 +22,12 @@ export default function AdminDashboard() {
         .from("contacts")
         .select("*")
         .order("created_at", { ascending: false });
-        
+      
+      console.log("✅ Fetch result:", { data, error });
+      
+      if (error) {
+        console.error("❌ Supabase query error:", error.message);
+      }
       if (data) setContacts(data);
       setLoading(false);
     };

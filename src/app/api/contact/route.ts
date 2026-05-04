@@ -39,7 +39,7 @@ export async function POST(req: Request) {
 
     // 📩 2. Email to YOU
     await resend.emails.send({
-      from: "Portfolio <prernas278@gmail.com>",
+      from: "onboarding@resend.dev",
       to: ["workprerna6@gmail.com"],
       subject: `New Contact: ${body.name}`,
       html: `
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
 
     // ✉️ 3. Auto reply to USER
     await resend.emails.send({
-      from: "Prerna <workprerna6@gmail.com>",
+      from: "onboarding@resend.dev",
       to: [body.email],
       subject: "Got your message 😄",
       html: `
