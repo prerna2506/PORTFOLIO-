@@ -1,30 +1,42 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Prerna Singh — Frontend Developer",
+  title: "Prerna Singh — Frontend Developer | React & Next.js",
   description:
-    "Frontend-focused developer skilled in React, Next.js, and modern UI systems. I build responsive, scalable web applications with strong attention to user experience and performance.",
-  keywords: ["Frontend Developer", "React", "Next.js", "Web Developer", "Portfolio", "Prerna Singh"],
+    "Frontend developer specializing in React, Next.js, and TypeScript. I build responsive, high-performance web applications with clean architecture and exceptional user experiences. Open to internships and frontend opportunities.",
+  keywords: [
+    "Frontend Developer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "Web Developer",
+    "Portfolio",
+    "Prerna Singh",
+    "Full Stack",
+    "UI Developer",
+    "JavaScript Developer",
+  ],
   authors: [{ name: "Prerna Singh" }],
   openGraph: {
     title: "Prerna Singh — Frontend Developer",
     description:
-      "Frontend-focused developer skilled in React, Next.js, and modern UI systems.",
+      "Frontend developer specializing in React, Next.js, and TypeScript. Building modern, scalable web applications.",
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Prerna Singh — Frontend Developer",
+    description: "Building modern, scalable web applications with React & Next.js.",
   },
 };
 
@@ -34,12 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <CustomCursor />
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-[#0a0a0a]">
         <Navbar />
         {children}
       </body>
