@@ -67,9 +67,8 @@ export default function Navbar() {
           {/* Resume CTA */}
           <div className="hidden md:flex items-center">
             <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/resume_text.txt"
+              download
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold transition-all duration-200 hover:scale-[1.03] shadow-[0_0_16px_rgba(249,115,22,0.25)]"
             >
               <FileText className="w-3.5 h-3.5" />
@@ -110,9 +109,8 @@ export default function Navbar() {
             ))}
             <div className="pt-3 mt-1 border-t border-white/[0.07]">
               <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/resume_text.txt"
+                download
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-orange-500 text-white text-sm font-semibold w-fit"
               >
                 <FileText className="w-3.5 h-3.5" />

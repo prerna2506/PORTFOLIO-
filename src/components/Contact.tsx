@@ -126,7 +126,7 @@ export default function Contact() {
               ),
             },
             {
-              href: "/resume.pdf",
+              href: "/resume_text.txt",
               label: "Download Resume",
               icon: <Download className="w-4 h-4" />,
               download: true,
@@ -135,8 +135,9 @@ export default function Contact() {
             <a
               key={item.label}
               href={item.href}
-              target={item.href.startsWith("http") ? "_blank" : "_blank"}
-              rel="noopener noreferrer"
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              download={item.download}
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-neutral-400 hover:text-white hover:bg-white/[0.08] hover:border-white/[0.14] transition-all duration-200 text-sm font-medium"
             >
               {item.icon}

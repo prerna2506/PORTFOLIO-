@@ -68,9 +68,8 @@ export default function Overlay() {
               View Projects
             </a>
             <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/resume_text.txt"
+              download
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all text-sm font-semibold tracking-wide hover:scale-105"
             >
               <Download className="w-4 h-4" />

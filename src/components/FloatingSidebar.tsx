@@ -24,9 +24,10 @@ export default function FloatingSidebar() {
     {
       icon: FileText,
       label: "Resume",
-      href: "/resume.pdf",
+      href: "/resume_text.txt",
       target: "_blank",
       title: "Download Resume",
+      download: true,
     },
     {
       icon: GithubIcon,
@@ -64,6 +65,7 @@ export default function FloatingSidebar() {
                   href={item.href}
                   target={item.target}
                   rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                  download={item.download}
                   title={item.title}
                   className="group flex items-center gap-0 overflow-hidden w-10 hover:w-32 h-10 rounded-full bg-[#1a1a1a] border border-white/10 text-neutral-400 hover:text-white hover:border-orange-500/50 hover:bg-[#1a1a1a] transition-all duration-300 shadow-lg shadow-black/40"
                 >
@@ -98,6 +100,7 @@ export default function FloatingSidebar() {
                   href={item.href}
                   target={item.target}
                   rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                  download={item.download}
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-all text-xs font-medium"
                 >
                   <Icon className="w-3.5 h-3.5" />

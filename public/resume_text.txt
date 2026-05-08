@@ -1,0 +1,28 @@
+Prerna Singh
+Full Stack Developer
+
+Location: India
+Email: workprerna6@gmail.com
+GitHub: https://github.com/prerna2506
+LinkedIn: https://www.linkedin.com/in/prerna-singh1/
+
+Summary
+Full stack developer focused on building reliable web products with clean UI, scalable backend flows, and strong product thinking.
+
+Core Skills
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Supabase
+- Resend API
+
+Experience Highlights
+- Built interactive frontend experiences with production-ready components.
+- Developed backend-integrated flows for contact systems and data handling.
+- Worked on analytics-oriented product features and structured content delivery.
+
+Current Focus
+- AI-assisted productivity tools
+- Real-time collaboration workflows
+- Performance and reliability improvements in user-facing products
