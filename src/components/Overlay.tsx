@@ -31,11 +31,22 @@ export default function Overlay() {
           style={{ opacity: opacity1, y: y1, WebkitFontSmoothing: 'antialiased', transform: 'translateZ(0)' }}
           className="text-center px-4 will-change-transform drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]"
         >
+          {/* Availability badge */}
+          <div className="flex justify-center mb-6 pointer-events-auto">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/25 text-green-400 text-xs font-semibold tracking-wide">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              Available for internships &amp; frontend roles
+            </span>
+          </div>
+
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-4">
-            Hi, I’m Prerna 👋
+            Hi, I'm Prerna 👋
           </h1>
-          <p className="text-xl md:text-2xl text-neutral-300 font-medium tracking-wide mb-8">
-            Full Stack Developer building modern web experiences.
+          <p className="text-xl md:text-2xl text-neutral-300 font-medium tracking-wide mb-3">
+            Frontend Developer
+          </p>
+          <p className="text-base md:text-lg text-neutral-400 font-light max-w-xl mx-auto mb-8 leading-relaxed">
+            Skilled in React, Next.js, and modern UI systems. I build responsive, scalable web applications with strong attention to user experience and performance.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pointer-events-auto">
             <a 
@@ -43,6 +54,14 @@ export default function Overlay() {
               className="px-8 py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-all text-sm font-semibold tracking-wide shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:shadow-[0_0_30px_rgba(249,115,22,0.6)]"
             >
               Get In Touch
+            </a>
+            <a 
+              href="/resume.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors text-sm font-semibold tracking-wide"
+            >
+              View Resume
             </a>
             <a 
               href="https://github.com/prerna2506" 
@@ -59,14 +78,6 @@ export default function Overlay() {
               className="px-8 py-3 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-colors text-sm font-medium tracking-wide backdrop-blur-md bg-black/20"
             >
               LinkedIn
-            </a>
-            <a 
-              href="#" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-colors text-sm font-medium tracking-wide backdrop-blur-md bg-black/20"
-            >
-              Resume
             </a>
           </div>
         </motion.div>

@@ -6,14 +6,18 @@ const PROJECTS = [
   {
     id: 1,
     title: "Weather Dashboard Application",
-    category: "UI/UX & Frontend",
+    category: "UI/UX · Frontend",
+    description: "Built a dynamic weather dashboard that fetches real-time data from a public API and renders responsive, visually rich forecast cards with animated state transitions.",
+    tech: ["React", "REST API", "CSS"],
     image: "/weather.png",
     link: "#"
   },
   {
     id: 2,
     title: "E-commerce & Streaming UI Analysis",
-    category: "UI/UX",
+    category: "UI/UX Research",
+    description: "Conducted a structured UX audit of leading e-commerce and streaming platforms, identifying usability patterns and translating insights into actionable design recommendations.",
+    tech: ["Figma", "UX Research", "Prototyping"],
     image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2940&auto=format&fit=crop",
     link: "#"
   },
@@ -21,6 +25,8 @@ const PROJECTS = [
     id: 3,
     title: "Background Removal Tool",
     category: "Web Application",
+    description: "Developed a browser-based tool that removes image backgrounds using an AI API, delivering instant results with a clean drag-and-drop interface.",
+    tech: ["JavaScript", "Canvas API", "REST API"],
     image: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2940&auto=format&fit=crop",
     link: "#"
   },
@@ -28,20 +34,26 @@ const PROJECTS = [
     id: 4,
     title: "AI Response Evaluation System",
     category: "Content & Language Analysis",
+    description: "Created an evaluation framework to benchmark and compare AI-generated text responses across clarity, accuracy, and tone — useful for content quality control pipelines.",
+    tech: ["Python", "NLP", "Data Analysis"],
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2865&auto=format&fit=crop",
     link: "#"
   },
   {
     id: 5,
     title: "Portfolio Website with 3D Character",
-    category: "UI/UX & Frontend",
+    category: "UI/UX · Frontend",
+    description: "Designed and built a cinematic personal portfolio with a 3D animated character, scrollytelling sequences, and smooth parallax effects to create a memorable first impression.",
+    tech: ["Next.js", "Framer Motion", "Three.js"],
     image: "/charcter.png",
     link: "#"
   },
   {
     id: 6,
     title: "Personal Blog Website",
-    category: "Content & Frontend",
+    category: "Content · Frontend",
+    description: "Built a fast, SEO-optimised personal blog with structured content architecture, clean typography, and responsive layouts optimised for readability on all devices.",
+    tech: ["Next.js", "MDX", "Tailwind CSS"],
     image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2940&auto=format&fit=crop",
     link: "#"
   }
@@ -49,7 +61,7 @@ const PROJECTS = [
 
 export default function Projects() {
   return (
-    <section className="bg-[#121212] min-h-screen py-20 md:py-32 px-8 md:px-24 border-t border-white/5 relative z-20">
+    <section id="projects" className="bg-[#121212] min-h-screen py-20 md:py-32 px-8 md:px-24 border-t border-white/5 relative z-20">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -59,10 +71,10 @@ export default function Projects() {
           className="mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-            Featured Products
+            Projects
           </h2>
           <p className="text-xl text-neutral-400 font-light max-w-2xl">
-            A collection of production-ready products focusing on seamless interaction, robust backend integration, and stunning aesthetics.
+            A selection of real-world applications built with a focus on performance, clean architecture, and user experience.
           </p>
         </motion.div>
 
@@ -83,10 +95,10 @@ export default function Projects() {
                 🏆 Featured Project
               </div>
               <h3 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                Premium Contact System 🚀
+                Full-Stack Contact &amp; Admin System
               </h3>
               <p className="text-xl text-neutral-300 font-light leading-relaxed">
-                A full-stack, "Typeform-style" contact system featuring real-time DB insertion, Resend email automation, smart AI replies, and a secure Admin Analytics Dashboard.
+                Built a production-grade, multi-step contact pipeline with real-time Supabase storage, automated email delivery via Resend, and a JWT-protected admin dashboard — all deployed on Vercel.
               </p>
 
               <div className="flex flex-wrap gap-2">
@@ -123,7 +135,7 @@ export default function Projects() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -10 }}
-              className="group relative flex flex-col gap-5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-500 overflow-hidden"
+              className="group relative flex flex-col gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-500 overflow-hidden"
             >
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-800">
                 <img
@@ -134,18 +146,31 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
               </div>
 
-              <div className="flex justify-between items-center px-2 pb-2">
-                <div>
-                  <h3 className="text-xl font-medium text-white mb-1 group-hover:text-neutral-200 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-neutral-400">
-                    {project.category}
-                  </p>
+              <div className="px-2 pb-2 flex-1 flex flex-col gap-3">
+                <div className="flex justify-between items-start gap-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-0.5 group-hover:text-neutral-200 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs text-neutral-500 font-medium uppercase tracking-wider">
+                      {project.category}
+                    </p>
+                  </div>
+                  <div className="w-9 h-9 flex-shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
                 </div>
 
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5" />
+                <p className="text-sm text-neutral-400 leading-relaxed line-clamp-2">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 mt-auto">
+                  {project.tech.map((t) => (
+                    <span key={t} className="px-2.5 py-1 rounded-full bg-black/40 border border-white/10 text-white/60 text-xs font-medium">
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.a>

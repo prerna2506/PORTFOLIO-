@@ -5,38 +5,43 @@ export default function Skills() {
   const skillCategories = [
     {
       title: "Core Web",
-      skills: ["HTML", "CSS", "JavaScript"]
+      emoji: "🌐",
+      skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript"]
     },
     {
       title: "Frameworks & Libraries",
-      skills: ["React.js", "Next.js", "Tailwind CSS"]
+      emoji: "⚛️",
+      skills: ["React.js", "Next.js", "Framer Motion", "Tailwind CSS"]
     },
     {
       title: "Backend & Database",
-      skills: ["Supabase", "API"]
+      emoji: "🗄️",
+      skills: ["Supabase", "REST APIs", "Node.js", "Next.js API Routes"]
     },
     {
-      title: "Services & Integration",
-      skills: ["Resend", "Flow"]
+      title: "Tools & DevOps",
+      emoji: "🛠️",
+      skills: ["Git", "GitHub", "Vercel", "VS Code"]
     },
     {
-      title: "AI & Code Generation",
-      skills: ["Claude", "Codex", "Antigravity", "Flow", "Google Whisk"]
+      title: "Design & UX",
+      emoji: "🎨",
+      skills: ["Figma", "Responsive Design", "Accessibility", "SEO"]
     },
     {
-      title: "SEO & Performance",
-      skills: ["SEO"]
-    },
-    {
-      title: "Tools & Deployment",
-      skills: ["Git", "Vercel"]
+      title: "Integrations",
+      emoji: "🔌",
+      skills: ["Resend API", "Supabase Auth", "OpenAI API"]
     }
   ];
 
   return (
-    <section className="bg-[#121212] py-20 md:py-32 px-8 md:px-24 border-t border-white/5 relative z-20">
+    <section
+      id="skills"
+      className="bg-[#121212] py-20 md:py-32 px-8 md:px-24 border-t border-white/5 relative z-20"
+    >
       <div className="max-w-7xl mx-auto">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -46,34 +51,33 @@ export default function Skills() {
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
             Tech Stack
           </h2>
+          <p className="text-lg text-neutral-400 font-light">
+            Tools and technologies I use to build production-ready applications.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, catIdx) => (
             <motion.div
               key={catIdx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: catIdx * 0.1 }}
+              transition={{ duration: 0.5, delay: catIdx * 0.08 }}
+              className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors"
             >
-              <h3 className="text-2xl font-semibold text-white mb-6 border-b border-white/10 pb-3">
+              <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <span>{category.emoji}</span>
                 {category.title}
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, i) => (
-                  <motion.span 
-                    key={i} 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.05 + 0.2 }}
-                    className="px-5 py-2.5 rounded-full bg-blue-900/20 border border-blue-500/30 text-blue-100 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-blue-600 hover:border-blue-400 hover:text-white shadow-[0_0_15px_rgba(37,99,235,0.15)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] cursor-pointer relative overflow-hidden group"
+                  <span
+                    key={i}
+                    className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-sm font-medium hover:bg-orange-500/10 hover:border-orange-500/30 hover:text-orange-300 transition-all duration-200 cursor-default"
                   >
-                    <span className="absolute inset-0 bg-blue-400/20 w-full h-full -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
-                    <span className="relative z-10">{skill}</span>
-                  </motion.span>
+                    {skill}
+                  </span>
                 ))}
               </div>
             </motion.div>
@@ -83,3 +87,4 @@ export default function Skills() {
     </section>
   );
 }
+
