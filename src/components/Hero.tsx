@@ -15,13 +15,11 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] px-6"
     >
-      {/* Subtle radial gradient bg */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-orange-500/6 rounded-full blur-[140px]" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/4 rounded-full blur-[120px]" />
       </div>
 
-      {/* Dot grid pattern */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
@@ -30,47 +28,39 @@ export default function Hero() {
         }}
       />
 
-      {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Availability badge */}
         <motion.div {...fadeUp(0.05)} className="flex justify-center mb-8">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold tracking-wide">
             <span
               className="w-1.5 h-1.5 rounded-full bg-green-400"
               style={{ animation: "pulse-dot 2s ease-in-out infinite" }}
             />
-            Available for internships &amp; frontend opportunities
+            Available for frontend internships and junior engineer roles
           </span>
         </motion.div>
 
-        {/* Headline */}
         <motion.h1
           {...fadeUp(0.15)}
-          className="text-[2.75rem] md:text-[4rem] lg:text-[4.75rem] font-bold tracking-tight leading-[1.07] text-white mb-6"
+          className="text-[2.4rem] md:text-[3.6rem] lg:text-[4.2rem] font-bold tracking-tight leading-[1.08] text-white mb-5"
         >
-          Frontend Developer{" "}
-          <span className="relative">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600">
-              Building Modern
-            </span>
+          Frontend Engineer{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600">
+            Building Scalable
           </span>{" "}
-          &amp; Scalable Web Applications
+          Modern Web Applications
         </motion.h1>
 
-        {/* Subtext */}
         <motion.p
           {...fadeUp(0.25)}
-          className="text-base md:text-lg text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+          className="text-base md:text-lg text-neutral-300 max-w-2xl mx-auto mb-9 leading-relaxed font-light"
         >
-          I create responsive, high-performance web applications with clean user
-          experiences using{" "}
-          <span className="text-neutral-200 font-medium">React</span>,{" "}
-          <span className="text-neutral-200 font-medium">Next.js</span>, and
-          modern technologies — focused on shipping products that feel fast,
-          polished, and production-ready.
+          Focused on responsive UI engineering, frontend architecture, performance
+          optimization, and production-ready user experiences with{" "}
+          <span className="text-neutral-100 font-medium">React</span>,{" "}
+          <span className="text-neutral-100 font-medium">Next.js</span>, and{" "}
+          <span className="text-neutral-100 font-medium">TypeScript</span>.
         </motion.p>
 
-        {/* CTA Buttons */}
         <motion.div
           {...fadeUp(0.35)}
           className="flex flex-wrap items-center justify-center gap-3 mb-14"
@@ -97,7 +87,6 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Social quick links */}
         <motion.div
           {...fadeUp(0.45)}
           className="flex items-center justify-center gap-5"
@@ -141,7 +130,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

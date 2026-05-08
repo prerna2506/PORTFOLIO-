@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "Working On", href: "#working-on" },
+  { label: "Currently Building", href: "#working-on" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -16,7 +16,6 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);

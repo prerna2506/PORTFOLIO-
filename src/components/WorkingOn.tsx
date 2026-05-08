@@ -1,199 +1,134 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const AVAILABLE_FOR = [
+const BUILDING_ITEMS = [
+  {
+    title: "Virtual Study Partner",
+    description:
+      "Building an accountability-first study product with structured sessions, progress loops, and clean interaction design.",
+    tech: ["Next.js", "TypeScript", "UI Architecture"],
+    status: "In active development",
+    href: "/study-partner",
+  },
+  {
+    title: "AI Workflow Integrations",
+    description:
+      "Integrating AI-assisted features into practical frontend workflows with clear UX states and production-safe behavior.",
+    tech: ["OpenAI API", "Node.js", "Product UX"],
+    status: "In active development",
+    href: "#contact",
+  },
+];
+
+const AVAILABILITY = [
   "Frontend internships",
-  "React / Next.js development",
-  "UI implementation projects",
-  "Freelance frontend work",
-  "Open-source contributions",
-];
-
-const CURRENTLY_LEARNING = [
-  {
-    label: "Backend Architecture",
-    desc: "Designing scalable Node.js APIs and understanding server-side patterns.",
-  },
-  {
-    label: "AI Integrations",
-    desc: "Embedding AI into real production workflows — not just demos.",
-  },
-  {
-    label: "Performance Engineering",
-    desc: "Core Web Vitals, lazy loading strategies, and bundle optimization.",
-  },
-  {
-    label: "Design Systems",
-    desc: "Building composable, reusable component libraries for scalability.",
-  },
-];
-
-const STATS = [
-  { value: "5+", label: "Projects Shipped" },
-  { value: "2", label: "Internships" },
-  { value: "2+", label: "Years Building" },
+  "React and Next.js project work",
+  "UI implementation and optimization",
+  "Freelance frontend collaboration",
 ];
 
 export default function WorkingOn() {
   return (
-    <section id="working-on" className="bg-[#0a0a0a] py-24 md:py-32 px-6 md:px-12 border-t border-white/[0.06] relative z-20">
+    <section
+      id="working-on"
+      className="bg-[#0a0a0a] py-20 md:py-28 px-6 md:px-12 border-t border-white/[0.06] relative z-20"
+    >
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12"
         >
           <span className="text-orange-400 text-xs font-semibold uppercase tracking-[0.15em] block mb-3">
-            Working On
+            Current Focus
           </span>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">
-            What I&apos;m Building
+            Currently Building
           </h2>
-          <p className="text-neutral-400 font-light max-w-xl">
-            A live look at what I&apos;m currently shipping, exploring, and learning — updated as I grow.
+          <p className="text-neutral-400 font-light max-w-2xl">
+            Ongoing work centered on production readiness, practical product value,
+            and deeper engineering ownership.
           </p>
         </motion.div>
 
-        <div id="about" className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+          {BUILDING_ITEMS.map((item, index) => (
+            <motion.article
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-6"
+            >
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <h3 className="text-white font-semibold">{item.title}</h3>
+                <span className="text-[10px] uppercase tracking-[0.12em] text-orange-300 border border-orange-400/30 bg-orange-500/10 px-2 py-1 rounded-full">
+                  {item.status}
+                </span>
+              </div>
+              <p className="text-sm text-neutral-300 leading-relaxed mb-4">{item.description}</p>
+              <div className="flex flex-wrap gap-1.5 mb-4">
+                {item.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-white/55 text-xs"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={item.href}
+                className="inline-flex items-center gap-1.5 text-orange-400 text-sm font-medium hover:text-orange-300 transition-colors"
+              >
+                View details <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </motion.article>
+          ))}
+        </div>
 
-          {/* Left: About + Availability */}
+        <div id="about" className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-6"
           >
-            <span className="text-orange-400 text-xs font-semibold uppercase tracking-[0.15em] block mb-3">
-              About
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
-              Who I Am
-            </h2>
-
-            <div className="space-y-4 mb-8">
-              <p className="text-neutral-300 leading-relaxed">
-                I&apos;m a frontend-focused developer who cares deeply about the
-                intersection of design and engineering. I build interfaces that feel{" "}
-                <span className="text-white font-medium">fast, intuitive, and polished</span>{" "}
-                — not just visually attractive.
-              </p>
-              <p className="text-neutral-400 leading-relaxed text-sm">
-                My work spans responsive UI systems, full-stack integrations, and
-                performance-conscious web apps. I approach every project with a
-                product mindset — understanding the user problem before writing a
-                single line of code.
-              </p>
-              <p className="text-neutral-400 leading-relaxed text-sm">
-                When a micro-interaction lands perfectly, when a page loads without
-                jank, when a user completes a flow without friction — that&apos;s
-                what drives my engineering decisions.
-              </p>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
-              {STATS.map((stat) => (
-                <div key={stat.label} className="p-4 rounded-xl bg-white/[0.025] border border-white/[0.08] text-center">
-                  <p className="text-2xl font-bold text-orange-400 mb-1">{stat.value}</p>
-                  <p className="text-xs text-neutral-500 font-medium leading-tight">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Current project */}
-            <div className="p-5 rounded-xl bg-white/[0.025] border border-white/[0.08] mb-6">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-400" style={{ animation: "pulse-dot 2s ease-in-out infinite" }} />
-                <span className="text-xs font-semibold text-white uppercase tracking-widest">Currently Building</span>
-              </div>
-              <p className="text-white font-semibold text-sm mb-1">Virtual Study Partner</p>
-              <p className="text-xs text-neutral-400 leading-relaxed mb-3">
-                A focused study app for developers who need accountability and consistency — built with Next.js and AI integrations.
-              </p>
-              <a
-                href="/study-partner"
-                className="inline-flex items-center gap-1.5 text-orange-400 text-xs font-medium hover:text-orange-300 transition-colors"
-              >
-                View Concept <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
-            {/* Availability */}
-            <div className="p-5 rounded-xl bg-green-500/[0.04] border border-green-500/15">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400" style={{ animation: "pulse-dot 2s ease-in-out infinite" }} />
-                <span className="text-xs font-semibold text-green-400 uppercase tracking-widest">Open to Opportunities</span>
-              </div>
-              <ul className="space-y-1.5">
-                {AVAILABLE_FOR.map((item, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-neutral-300">
-                    <span className="text-green-500/60 text-xs">▸</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h3 className="text-white font-semibold mb-3">About</h3>
+            <p className="text-sm text-neutral-300 leading-relaxed mb-3">
+              I am a frontend-focused engineer who builds responsive interfaces,
+              clean component systems, and production-ready web flows.
+            </p>
+            <p className="text-sm text-neutral-400 leading-relaxed">
+              My core focus is shipping software that is usable, reliable, and
+              easy to maintain as products grow.
+            </p>
           </motion.div>
 
-          {/* Right: Currently Learning */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="rounded-xl border border-green-500/20 bg-green-500/[0.04] p-6"
           >
-            <span className="text-orange-400 text-xs font-semibold uppercase tracking-[0.15em] block mb-3">
-              Growth
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
-              Currently Exploring
-            </h2>
-            <p className="text-neutral-400 text-sm leading-relaxed mb-8">
-              I actively expand beyond my comfort zone. These are the areas I&apos;m
-              building real depth in right now.
-            </p>
-
-            <div className="space-y-4">
-              {CURRENTLY_LEARNING.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.09 }}
-                  className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.025] border border-white/[0.08] hover:border-white/[0.14] hover:bg-white/[0.04] transition-all duration-300 group"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-orange-500/20 transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold text-sm mb-1">
-                      {item.label}
-                    </p>
-                    <p className="text-xs text-neutral-500 leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
+            <h3 className="text-green-400 font-semibold mb-3 uppercase text-xs tracking-[0.12em]">
+              Open To Opportunities
+            </h3>
+            <ul className="space-y-2">
+              {AVAILABILITY.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-neutral-300">
+                  <span className="text-green-400 mt-0.5">-</span>
+                  {item}
+                </li>
               ))}
-            </div>
-
-            {/* Philosophy quote */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 p-6 rounded-xl border border-white/[0.06] bg-white/[0.015]"
-            >
-              <p className="text-neutral-400 text-sm leading-relaxed italic">
-                &ldquo;The best interface is the one the user never has to think about.
-                I build with that goal in mind — invisible engineering that just works.&rdquo;
-              </p>
-              <p className="text-neutral-600 text-xs mt-3">— Prerna Singh</p>
-            </motion.div>
+            </ul>
           </motion.div>
         </div>
       </div>
