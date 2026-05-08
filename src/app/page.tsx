@@ -1,27 +1,32 @@
 import ScrollyCanvas from "@/components/ScrollyCanvas";
 import Overlay from "@/components/Overlay";
-import Experience from "@/components/Experience";
+import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import CaseStudy from "@/components/CaseStudy";
-import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 import WorkingOn from "@/components/WorkingOn";
-import InteractiveDemos from "@/components/InteractiveDemos";
 import Contact from "@/components/Contact";
+import FloatingSidebar from "@/components/FloatingSidebar";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#121212] selection:bg-white/20">
-      <div className="relative">
+      {/* Hero */}
+      <div className="relative h-screen">
         <ScrollyCanvas />
         <Overlay />
       </div>
-      <Experience />
+
+      {/* Professional flow: Skills → Projects → Experience → About/Why I Build → Contact */}
+      <Skills />
       <Projects />
       <CaseStudy />
-      <Skills />
+      <Experience />
       <WorkingOn />
-      <InteractiveDemos />
       <Contact />
+
+      {/* Floating quick-access */}
+      <FloatingSidebar />
     </main>
   );
 }

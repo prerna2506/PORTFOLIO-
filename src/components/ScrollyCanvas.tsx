@@ -100,15 +100,13 @@ export default function ScrollyCanvas() {
   }, [images]);
 
   return (
-    <div ref={containerRef} className="h-[500vh] relative bg-[#121212] w-full">
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex justify-center items-center">
-        <canvas 
-          ref={canvasRef} 
-          className="absolute inset-0 w-full h-full object-cover" 
-        />
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-      </div>
+    <div ref={containerRef} className="absolute inset-0 w-full h-full bg-[#121212]">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/50 pointer-events-none" />
     </div>
   );
 }
