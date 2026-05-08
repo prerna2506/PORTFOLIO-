@@ -35,11 +35,30 @@ const STATS = [
   { value: "2+", label: "Years Building" },
 ];
 
-export default function About() {
+export default function WorkingOn() {
   return (
-    <section id="about" className="bg-[#0a0a0a] py-24 md:py-32 px-6 md:px-12 border-t border-white/[0.06] relative z-20">
+    <section id="working-on" className="bg-[#0a0a0a] py-24 md:py-32 px-6 md:px-12 border-t border-white/[0.06] relative z-20">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <span className="text-orange-400 text-xs font-semibold uppercase tracking-[0.15em] block mb-3">
+            Working On
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">
+            What I&apos;m Building
+          </h2>
+          <p className="text-neutral-400 font-light max-w-xl">
+            A live look at what I&apos;m currently shipping, exploring, and learning — updated as I grow.
+          </p>
+        </motion.div>
+
+        <div id="about" className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left: About + Availability */}
           <motion.div
