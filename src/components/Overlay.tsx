@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Download } from "lucide-react";
 import { useRef } from "react";
 
 export default function Overlay() {
@@ -60,13 +61,13 @@ export default function Overlay() {
             >
               LinkedIn
             </a>
-            <a 
-              href="#" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-colors text-sm font-medium tracking-wide backdrop-blur-md bg-black/20"
+            <a
+              href="/resume_text.txt"
+              download
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors text-sm font-semibold tracking-wide shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
             >
-              Resume
+              <Download className="w-4 h-4" />
+              Download Resume
             </a>
           </div>
         </motion.div>

@@ -2,6 +2,7 @@ import ScrollyCanvas from "@/components/ScrollyCanvas";
 import Overlay from "@/components/Overlay";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
+import CurrentlyBuilding from "@/components/CurrentlyBuilding";
 import Skills from "@/components/Skills";
 import TechStackGame from "@/components/TechStackGame";
 import Contact from "@/components/Contact";
@@ -17,6 +18,7 @@ export default function Home() {
       <Experience />
       <Skills />
       <TechStackGame />
+      <CurrentlyBuilding />
       <Contact />
     </main>
   );
