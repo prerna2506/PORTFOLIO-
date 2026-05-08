@@ -10,9 +10,9 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const checkAuthAndFetch = async () => {
-      // 1. Check if user is logged in
+      // 1. Check if user is logged in AND is the admin
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
+      if (!session || session.user.email !== "prernas278@gmail.com") {
         router.push("/login");
         return;
       }

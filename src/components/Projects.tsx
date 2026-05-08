@@ -107,14 +107,7 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Image Showcase */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700"
-            >
-              <img src="public/admin dashboard.png" alt="Admin Dashboard" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-            </motion.div>
+
           </div>
         </motion.div>
 

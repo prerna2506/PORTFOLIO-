@@ -3,6 +3,7 @@ import Overlay from "@/components/Overlay";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
+import WorkingOn from "@/components/WorkingOn";
 import InteractiveDemos from "@/components/InteractiveDemos";
 import Contact from "@/components/Contact";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <Projects />
       <Experience />
       <Skills />
+      <WorkingOn />
       <InteractiveDemos />
       <Contact />
     </main>
