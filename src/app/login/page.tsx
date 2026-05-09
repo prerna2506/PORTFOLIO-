@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { verifyAdminAccess } from "@/lib/admin";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,14 +12,24 @@ export default function Login() {
 
   const handleLogin = async () => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
-    
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
     if (error) {
+      setLoading(false);
       alert("Error: " + error.message);
-    } else {
-      router.push("/admin");
+      return;
     }
+
+    const accessToken = data.session?.access_token;
+    const isAdmin = await verifyAdminAccess(accessToken);
+    if (!isAdmin) {
+      await supabase.auth.signOut();
+      setLoading(false);
+      alert("Unauthorized account.");
+      return;
+    }
+    setLoading(false);
+    router.push("/admin");
   };
 
   return (

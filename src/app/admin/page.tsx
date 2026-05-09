@@ -2,33 +2,53 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { clearAdminAccessCookie, verifyAdminAccess } from "@/lib/admin";
+
+type ContactRecord = {
+  id: string;
+  name: string;
+  email: string;
+  purpose: string;
+  budget: string;
+  timeline: string;
+  message: string | null;
+  created_at: string;
+};
 
 export default function AdminDashboard() {
-  const [contacts, setContacts] = useState<any[]>([]);
+  const [contacts, setContacts] = useState<ContactRecord[]>([]);
+  const [recentCount, setRecentCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     const checkAuthAndFetch = async () => {
-      // 1. Check if user is logged in AND is the admin
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session || session.user.email !== "prernas278@gmail.com") {
-        router.push("/login");
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const isAdmin = await verifyAdminAccess(session?.access_token);
+
+      if (!isAdmin) {
+        await clearAdminAccessCookie();
+        router.replace("/");
         return;
       }
-      
-      // 2. Fetch data from Supabase
+
       const { data, error } = await supabase
         .from("contacts")
         .select("*")
         .order("created_at", { ascending: false });
-      
-      console.log("✅ Fetch result:", { data, error });
-      
+
       if (error) {
-        console.error("❌ Supabase query error:", error.message);
+        console.error("Supabase query error:", error.message);
       }
-      if (data) setContacts(data);
+      if (data) {
+        const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+        setContacts(data);
+        setRecentCount(
+          data.filter((contact) => new Date(contact.created_at).getTime() > sevenDaysAgo).length,
+        );
+      }
       setLoading(false);
     };
     checkAuthAndFetch();
@@ -55,7 +75,11 @@ export default function AdminDashboard() {
             <p className="text-white/40 mt-2">Manage your incoming portfolio leads.</p>
           </div>
           <button 
-            onClick={() => supabase.auth.signOut().then(() => router.push("/login"))} 
+            onClick={async () => {
+              await clearAdminAccessCookie();
+              await supabase.auth.signOut();
+              router.replace("/");
+            }}
             className="px-6 py-2 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-sm font-medium text-white/80"
           >
             Sign out
@@ -70,9 +94,7 @@ export default function AdminDashboard() {
           </div>
           <div className="p-6 rounded-[20px] bg-white/5 border border-white/10 backdrop-blur-xl">
             <p className="text-white/50 text-sm font-medium mb-2 uppercase tracking-wider">Recent (Last 7 Days)</p>
-            <p className="text-5xl font-bold text-blue-400">
-              {contacts.filter(c => new Date(c.created_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).length}
-            </p>
+            <p className="text-5xl font-bold text-blue-400">{recentCount}</p>
           </div>
           <div className="p-6 rounded-[20px] bg-white/5 border border-white/10 backdrop-blur-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-10 -mt-10" />
