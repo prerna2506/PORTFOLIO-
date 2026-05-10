@@ -12,7 +12,7 @@ const BUILDING_ITEMS = [
     status: "Design Done",
     progress: 30,
     features: ["Study sessions", "Progress tracking", "Find a buddy", "Message","Break Games"],
-    href: "#contact",
+    href: "/case-study",
   },
   
   
