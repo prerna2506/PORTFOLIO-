@@ -10,61 +10,104 @@ type AdminCheckBody = {
   accessToken?: string;
 };
 
-function jsonUnauthorized() {
-  const response = NextResponse.json({ authorized: false }, { status: 401 });
+function jsonUnauthorized(message = "Unauthorized") {
+  const response = NextResponse.json(
+    {
+      authorized: false,
+      error: message,
+    },
+    { status: 401 }
+  );
+
   response.cookies.delete(ADMIN_COOKIE_NAME);
+
   return response;
 }
 
 export async function POST(request: Request) {
-  const body = (await request.json().catch(() => ({}))) as AdminCheckBody;
-  const accessToken = body.accessToken;
+  try {
+    const body =
+      (await request.json().catch(() => ({}))) as AdminCheckBody;
 
-  if (!accessToken) {
-    return jsonUnauthorized();
+    let accessToken = body.accessToken;
+
+    // ALSO SUPPORT AUTHORIZATION HEADER
+    if (!accessToken) {
+      const authHeader = request.headers.get("authorization");
+
+      if (authHeader?.startsWith("Bearer ")) {
+        accessToken = authHeader.replace("Bearer ", "");
+      }
+    }
+
+    if (!accessToken) {
+      return jsonUnauthorized("Missing access token");
+    }
+
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey =
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return jsonUnauthorized("Missing Supabase env variables");
+    }
+
+    const supabase = createClient(
+      supabaseUrl,
+      supabaseAnonKey
+    );
+
+    const { data, error } =
+      await supabase.auth.getUser(accessToken);
+
+    if (error || !data.user) {
+      console.error("Supabase auth error:", error);
+
+      return jsonUnauthorized("Invalid user");
+    }
+
+    const authorized = isAdminIdentity({
+      email: data.user.email,
+      role:
+        (data.user.app_metadata?.role as string | undefined) ??
+        (data.user.user_metadata?.role as string | undefined),
+    });
+
+    if (!authorized) {
+      return jsonUnauthorized("Not admin");
+    }
+
+    const response = NextResponse.json({
+      authorized: true,
+      user: {
+        email: data.user.email,
+      },
+    });
+
+    response.cookies.set({
+      name: ADMIN_COOKIE_NAME,
+      value: "1",
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: ADMIN_COOKIE_MAX_AGE_SECONDS,
+    });
+
+    return response;
+  } catch (err) {
+    console.error("ADMIN CHECK ERROR:", err);
+
+    return jsonUnauthorized("Server error");
   }
-
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return jsonUnauthorized();
-  }
-
-  const supabase = createClient(supabaseUrl, supabaseAnonKey);
-  const { data, error } = await supabase.auth.getUser(accessToken);
-
-  if (error || !data.user) {
-    return jsonUnauthorized();
-  }
-
-  const authorized = isAdminIdentity({
-    email: data.user.email,
-    role:
-      (data.user.app_metadata?.role as string | undefined) ??
-      (data.user.user_metadata?.role as string | undefined),
-  });
-
-  if (!authorized) {
-    return jsonUnauthorized();
-  }
-
-  const response = NextResponse.json({ authorized: true });
-  response.cookies.set({
-    name: ADMIN_COOKIE_NAME,
-    value: "1",
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: ADMIN_COOKIE_MAX_AGE_SECONDS,
-  });
-
-  return response;
 }
 
 export async function DELETE() {
-  const response = NextResponse.json({ cleared: true });
+  const response = NextResponse.json({
+    cleared: true,
+  });
+
   response.cookies.delete(ADMIN_COOKIE_NAME);
+
   return response;
 }
