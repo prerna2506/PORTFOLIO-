@@ -1,32 +1,25 @@
 export const ADMIN_COOKIE_NAME = "portfolio_admin";
-export const ADMIN_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 8; // 8 hours
 
-const normalize = (value: string) => value.trim().toLowerCase();
+export const ADMIN_COOKIE_MAX_AGE_SECONDS =
+  60 * 60 * 24 * 7;
 
-export function getAdminEmailsFromEnv() {
-  const raw = process.env.ADMIN_EMAILS ?? "";
-  return raw
-    .split(",")
-    .map(normalize)
-    .filter(Boolean);
-}
+const ADMIN_EMAILS = [
+  "prernas278@gmail.com",
+];
 
 type AdminIdentity = {
   email?: string | null;
   role?: string | null;
 };
 
-export function isAdminIdentity({ email, role }: AdminIdentity) {
-  const normalizedRole = (role ?? "").toLowerCase();
-  if (normalizedRole === "admin") {
-    return true;
-  }
-
-  const normalizedEmail = normalize(email ?? "");
-  if (!normalizedEmail) {
+export function isAdminIdentity({
+  email,
+}: AdminIdentity): boolean {
+  if (!email) {
     return false;
   }
 
-  const adminEmails = getAdminEmailsFromEnv();
-  return adminEmails.includes(normalizedEmail);
+  return ADMIN_EMAILS.includes(
+    email.toLowerCase()
+  );
 }
