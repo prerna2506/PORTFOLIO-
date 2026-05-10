@@ -12,17 +12,35 @@ export default function Login() {
 
   const handleLogin = async () => {
     setLoading(true);
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
     if (error) {
+      console.error(error);
       setLoading(false);
       alert("Error: " + error.message);
       return;
     }
 
-    const accessToken = data.session?.access_token;
-    const isAdmin = await verifyAdminAccess(accessToken);
-    if (!isAdmin) {
+    console.log("LOGIN SESSION:", data.session);
+
+    if (!data.session?.access_token) {
+      console.error("NO SESSION FOUND");
+      setLoading(false);
+      alert("No session found. Please try again.");
+      return;
+    }
+
+    const authorized = await verifyAdminAccess(
+      data.session.access_token
+    );
+
+    console.log("AUTHORIZED:", authorized);
+
+    if (!authorized) {
       await supabase.auth.signOut();
       setLoading(false);
       alert("Unauthorized account.");
