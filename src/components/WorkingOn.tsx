@@ -9,9 +9,9 @@ const BUILDING_ITEMS = [
     description:
       "Building an accountability-first study platform with structured sessions, progress tracking, and collaborative features.",
     tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
-    status: "In Development",
-    progress: 65,
-    features: ["Study sessions", "Progress tracking", "Accountability", "Collaboration"],
+    status: "Design Done",
+    progress: 30,
+    features: ["Study sessions", "Progress tracking", "Find a buddy", "Message","Break Games"],
     href: "#contact",
   },
   
