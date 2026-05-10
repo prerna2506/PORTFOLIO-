@@ -83,7 +83,7 @@ const PROJECTS: Project[] = [
     techStack: ["JavaScript", "REST API", "Canvas API", "CSS3"],
     github: "#",
     demo: "#",
-    status: "Prototype",
+    status: "Completed",
   },
 ];
 

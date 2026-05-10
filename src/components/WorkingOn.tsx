@@ -14,26 +14,8 @@ const BUILDING_ITEMS = [
     features: ["Study sessions", "Progress tracking", "Accountability", "Collaboration"],
     href: "#contact",
   },
-  {
-    title: "AI Workflow Automation",
-    description:
-      "Developing AI-powered tools for frontend development workflows with intelligent code assistance and automation.",
-    tech: ["OpenAI API", "Node.js", "React", "Product UX"],
-    status: "Research Phase",
-    progress: 35,
-    features: ["Code generation", "Workflow automation", "AI assistance", "Production tools"],
-    href: "#contact",
-  },
-  {
-    title: "Component Library",
-    description:
-      "Creating a comprehensive, accessible component library with modern design patterns and extensive documentation.",
-    tech: ["TypeScript", "Storybook", "Tailwind CSS", "React"],
-    status: "Planning",
-    progress: 20,
-    features: ["Reusable components", "Documentation", "Accessibility", "Design system"],
-    href: "#contact",
-  },
+  
+  
 ];
 
 const AVAILABILITY = [
