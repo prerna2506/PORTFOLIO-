@@ -24,7 +24,7 @@ export default function FloatingSidebar() {
     {
       icon: FileText,
       label: "Resume",
-      href: "/resume_text.txt",
+      href: "/PRERNA_SINGH_Resume.docx",
       target: "_blank",
       title: "Download Resume",
       download: true,

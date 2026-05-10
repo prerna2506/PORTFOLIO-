@@ -105,7 +105,7 @@ export default function Navbar() {
               </Link>
             )}
             <a
-              href="/resume_text.txt"
+              href="/PRERNA_SINGH_Resume.docx"
               download
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold transition-all duration-200 hover:scale-[1.03] shadow-[0_0_16px_rgba(249,115,22,0.25)]"
             >
@@ -157,7 +157,7 @@ export default function Navbar() {
                 </Link>
               )}
               <a
-                href="/resume_text.txt"
+                href="/PRERNA_SINGH_Resume.docx"
                 download
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-orange-500 text-white text-sm font-semibold w-fit"
               >

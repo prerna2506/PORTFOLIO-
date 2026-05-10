@@ -126,7 +126,7 @@ export default function Contact() {
               ),
             },
             {
-              href: "/resume_text.txt",
+              href: "/PRERNA_SINGH_Resume.docx",
               label: "Download Resume",
               icon: <Download className="w-4 h-4" />,
               download: true,

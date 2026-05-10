@@ -7,68 +7,83 @@ type Project = {
   id: number;
   title: string;
   category: string;
+  description: string;
   problem: string;
   solution: string;
   impact: string;
-  stack: string[];
+  features: string[];
+  techStack: string[];
   github: string;
   demo: string;
+  status: "Completed" | "In Progress" | "Prototype";
   featured?: boolean;
 };
 
 const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "Full-Stack Contact and Admin System",
-    category: "Featured | Full-Stack Product",
-    problem: "Manual lead handling slows response time and creates inconsistent follow-up.",
+    title: "Full-Stack Contact & Admin System",
+    category: "Full-Stack Product",
+    description: "Production-ready lead management system with real-time dashboard and automated workflows.",
+    problem: "Manual lead handling slows response time and creates inconsistent follow-up processes.",
     solution:
       "Built a multi-step contact flow with real-time Supabase storage, transactional emails through Resend, and a JWT-protected admin dashboard for lead management.",
     impact:
-      "Enabled structured, trackable lead capture with automated notifications and a single internal dashboard for faster decision making.",
-    stack: ["Next.js", "TypeScript", "Supabase", "Resend API", "Tailwind CSS"],
+      "Enabled structured, trackable lead capture with automated notifications and centralized dashboard for faster decision making.",
+    features: ["Multi-step contact form", "Real-time admin dashboard", "Email notifications", "JWT authentication", "Lead tracking"],
+    techStack: ["Next.js", "TypeScript", "Supabase", "Resend API", "Tailwind CSS"],
     github: "https://github.com/prerna2506/PORTFOLIO-",
     demo: "/form",
+    status: "Completed",
     featured: true,
   },
   {
     id: 2,
-    title: "Weather Dashboard Application",
-    category: "Frontend | API Integration",
-    problem: "Most weather tools feel cluttered and difficult to scan on mobile.",
+    title: "Weather Dashboard",
+    category: "Frontend Application",
+    description: "Responsive weather dashboard with clean UI and real-time data visualization.",
+    problem: "Most weather tools feel cluttered and difficult to scan on mobile devices.",
     solution:
       "Built a responsive dashboard with city search, forecast modules, and clear UI states for loading and error handling.",
     impact:
       "Delivered a fast, readable weather experience across breakpoints with reusable components and clean async data flow.",
-    stack: ["React", "REST API", "JavaScript", "CSS3"],
+    features: ["City search", "Weather forecasts", "Mobile responsive", "Loading states", "Error handling"],
+    techStack: ["React", "REST API", "JavaScript", "CSS3"],
     github: "#",
     demo: "#",
+    status: "Completed",
   },
   {
     id: 3,
-    title: "Cinematic Portfolio Experience",
-    category: "Frontend | Performance and Motion",
-    problem: "Interactive portfolios often sacrifice usability and performance.",
+    title: "Interactive Portfolio",
+    category: "Frontend Experience",
+    description: "High-performance portfolio with cinematic animations and optimized user experience.",
+    problem: "Interactive portfolios often sacrifice usability and performance for visual effects.",
     solution:
-      "Created a scrollytelling portfolio with a 120-frame canvas sequence and layered Framer Motion transitions.",
+      "Created a scrollytelling portfolio with optimized canvas rendering and smooth Framer Motion transitions.",
     impact:
       "Balanced visual storytelling with performance-focused rendering and mobile responsiveness.",
-    stack: ["Next.js", "Framer Motion", "Canvas API", "Tailwind CSS"],
+    features: ["Scroll animations", "Canvas rendering", "Performance optimized", "Mobile responsive"],
+    techStack: ["Next.js", "Framer Motion", "Canvas API", "Tailwind CSS"],
     github: "https://github.com/prerna2506/PORTFOLIO-",
     demo: "#",
+    status: "Completed",
   },
   {
     id: 4,
-    title: "Background Removal Tool",
-    category: "Web App | AI Workflow",
-    problem: "Non-design users need quick image cleanup without desktop software.",
+    title: "AI Background Remover",
+    category: "AI Web Tool",
+    description: "Browser-based background removal tool with drag-and-drop interface and instant processing.",
+    problem: "Non-design users need quick image cleanup without desktop software or complex tools.",
     solution:
       "Built a browser-based drag-and-drop background removal workflow using API-driven processing and preview states.",
     impact:
       "Reduced friction for basic image editing tasks with an in-browser workflow and immediate visual feedback.",
-    stack: ["JavaScript", "REST API", "Canvas API", "CSS3"],
+    features: ["Drag-and-drop", "API processing", "Instant preview", "Browser-based"],
+    techStack: ["JavaScript", "REST API", "Canvas API", "CSS3"],
     github: "#",
     demo: "#",
+    status: "Prototype",
   },
 ];
 
@@ -94,10 +109,10 @@ export default function Projects() {
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="mb-14"
         >
           <span className="text-orange-400 text-xs font-semibold uppercase tracking-[0.15em] block mb-3">
@@ -113,22 +128,41 @@ export default function Projects() {
         </motion.div>
 
         <motion.article
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65 }}
-          className="mb-10 p-8 md:p-10 rounded-2xl bg-white/[0.025] border border-white/[0.08] hover:border-white/[0.14] transition-colors duration-300"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-12 p-8 md:p-10 rounded-2xl bg-white/[0.025] border border-white/[0.08] hover:border-white/[0.12] hover:bg-white/[0.04] transition-all duration-300"
         >
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-orange-500/15 border border-orange-500/25 text-orange-400 text-xs font-semibold">
               Featured
             </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold">
+              {featured.status}
+            </span>
             <span className="text-xs text-neutral-500 font-medium">{featured.category}</span>
           </div>
 
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-snug">
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-snug">
             {featured.title}
           </h3>
+          
+          <p className="text-neutral-300 mb-6 leading-relaxed">{featured.description}</p>
+
+          <div className="mb-6">
+            <h4 className="text-sm font-semibold text-white mb-3">Key Features</h4>
+            <div className="flex flex-wrap gap-2">
+              {featured.features.map((feature) => (
+                <span
+                  key={feature}
+                  className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-medium"
+                >
+                  {feature}
+                </span>
+              ))}
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-7">
             {[
@@ -145,7 +179,10 @@ export default function Projects() {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-7">{featured.stack.map(badge)}</div>
+          <div className="mb-7">
+            <h4 className="text-sm font-semibold text-white mb-3">Technology Stack</h4>
+            <div className="flex flex-wrap gap-2">{featured.techStack.map(badge)}</div>
+          </div>
 
           <div className="flex flex-wrap gap-3">
             <a
@@ -169,24 +206,38 @@ export default function Projects() {
           </div>
         </motion.article>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
           {others.map((project, idx) => (
             <motion.article
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="flex flex-col gap-4 p-6 rounded-2xl bg-white/[0.025] border border-white/[0.08] hover:bg-white/[0.04] hover:border-white/[0.14] transition-all duration-300"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.06 }}
+              className="flex flex-col gap-4 p-4 sm:p-6 rounded-2xl bg-white/[0.025] border border-white/[0.08] hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300"
             >
               <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-[0.7rem] text-neutral-500 font-medium uppercase tracking-wider mb-1.5">
-                    {project.category}
-                  </p>
-                  <h4 className="text-base font-semibold text-white leading-snug">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-semibold ${
+                      project.status === "Completed" 
+                        ? "bg-green-500/10 border border-green-500/20 text-green-400"
+                        : project.status === "In Progress"
+                        ? "bg-blue-500/10 border border-blue-500/20 text-blue-400"
+                        : "bg-yellow-500/10 border border-yellow-500/20 text-yellow-400"
+                    }`}>
+                      {project.status}
+                    </span>
+                    <span className="text-[0.65rem] text-neutral-500 font-medium uppercase tracking-wider">
+                      {project.category}
+                    </span>
+                  </div>
+                  <h4 className="text-base sm:text-lg font-semibold text-white leading-snug mb-2">
                     {project.title}
                   </h4>
+                  <p className="text-sm text-neutral-300 leading-relaxed mb-3">
+                    {project.description}
+                  </p>
                 </div>
                 <a
                   href={project.demo !== "#" ? project.demo : project.github}
@@ -198,18 +249,25 @@ export default function Projects() {
                 </a>
               </div>
 
-              <div className="space-y-2 text-sm">
-                <p className="text-neutral-400 leading-relaxed">
-                  <span className="text-neutral-300 font-medium">Solution: </span>
-                  {project.solution}
-                </p>
-                <p className="text-neutral-500 leading-relaxed">
-                  <span className="text-neutral-400 font-medium">Impact: </span>
-                  {project.impact}
-                </p>
+              <div className="mb-3">
+                <div className="flex flex-wrap gap-1.5">
+                  {project.features.slice(0, 3).map((feature) => (
+                    <span
+                      key={feature}
+                      className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-400 text-xs font-medium"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                  {project.features.length > 3 && (
+                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-500 text-xs font-medium">
+                      +{project.features.length - 3} more
+                    </span>
+                  )}
+                </div>
               </div>
 
-              <div className="flex flex-wrap gap-1.5 mt-auto pt-1">{project.stack.map(badge)}</div>
+              <div className="flex flex-wrap gap-1.5 mt-auto pt-2">{project.techStack.map(badge)}</div>
             </motion.article>
           ))}
         </div>
