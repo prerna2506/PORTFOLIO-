@@ -136,7 +136,7 @@ export default function AdminDashboard() {
                     </p>
                   </td>
                   <td className="p-6">
-                    <div className="max-w-xs text-white/70 line-clamp-2" title={c.message}>
+                    <div className="max-w-xs text-white/70 line-clamp-2" title={c.message ?? undefined}>
                       {c.message || <span className="text-white/20 italic">No message</span>}
                     </div>
                   </td>
