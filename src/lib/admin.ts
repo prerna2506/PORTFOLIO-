@@ -11,23 +11,43 @@ async function parseAdminResponse(response: Response): Promise<boolean> {
   return payload.authorized === true;
 }
 
-export async function verifyAdminAccess(accessToken?: string) {
+export async function verifyAdminAccess(
+  accessToken?: string
+): Promise<boolean> {
   if (!accessToken) {
+    console.log("NO ACCESS TOKEN");
     return false;
   }
+
+  console.log("TOKEN EXISTS");
 
   try {
     const response = await fetch("/api/admin/check", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({ accessToken }),
+      credentials: "include",
+      body: JSON.stringify({
+        accessToken,
+      }),
       cache: "no-store",
     });
 
-    return await parseAdminResponse(response);
-  } catch {
+    console.log("STATUS:", response.status);
+
+    if (!response.ok) {
+      return false;
+    }
+
+    const data = await response.json();
+
+    console.log("DATA:", data);
+
+    return Boolean(data.authorized);
+  } catch (err) {
+    console.error(err);
     return false;
   }
 }
