@@ -1,14 +1,17 @@
-const normalizedAdminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL ?? "").trim().toLowerCase();
+type AdminCheckResponse = {
+  authorized: boolean;
+};
 
-export function isConfiguredAdminEmail(email?: string | null): boolean {
-  if (!email || !normalizedAdminEmail) {
+async function parseAdminResponse(response: Response): Promise<boolean> {
+  if (!response.ok) {
     return false;
   }
 
-  return email.trim().toLowerCase() === normalizedAdminEmail;
+  const payload = (await response.json()) as AdminCheckResponse;
+  return payload.authorized === true;
 }
 
-export async function verifyAdminAccess(accessToken?: string): Promise<boolean> {
+export async function verifyAdminAccess(accessToken?: string) {
   if (!accessToken) {
     return false;
   }
@@ -17,29 +20,25 @@ export async function verifyAdminAccess(accessToken?: string): Promise<boolean> 
     const response = await fetch("/api/admin/check", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({ accessToken }),
       cache: "no-store",
     });
 
-    if (!response.ok) {
-      return false;
-    }
-
-    const data = (await response.json()) as { authorized?: boolean };
-    return Boolean(data.authorized);
+    return await parseAdminResponse(response);
   } catch {
     return false;
   }
 }
 
-export async function clearAdminAccessCookie(): Promise<void> {
+export async function clearAdminAccessCookie() {
   try {
     await fetch("/api/admin/check", {
       method: "DELETE",
       cache: "no-store",
     });
   } catch {
-    // Client sign-out still proceeds even if cookie clearing fails.
+    // no-op: best effort cookie cleanup
   }
 }

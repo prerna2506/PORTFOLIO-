@@ -34,8 +34,8 @@ const EXPERIENCES = [
     id: 3,
     title: "Content Writer",
     company: "Finanjo",
-    type: "Remote | Part-time",
-    period: "2025 - Present",
+    type: "On-site | Full-time",
+    period: "2025 - 2026",
     tech: ["SEO Writing", "Research", "Editorial QA"],
     points: [
       "Publish research-backed finance content with strong readability and structured information hierarchy.",
