@@ -7,19 +7,19 @@ const BUILDING_ITEMS = [
   {
     title: "Virtual Study Partner",
     description:
-      "Building an accountability-first study platform with structured sessions, progress tracking, and collaborative features.",
+      "Developing an accountability-first study platform with real-time WebSocket syncing (Supabase Channels) to match partners for co-working.",
     tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
-    status: "Design Done",
+    status: "In Development",
     progress: 30,
-    features: ["Study sessions", "Progress tracking", "Find a buddy", "Message","Break Games"],
-    href: "/case-study",
+    features: ["Real-time Session Sync", "WebSocket Channels", "Focus State Machines", "2-Player Break Games", "Low-latency presence"],
+    href: "/study-partner",
   },
-  
-  
 ];
 
 const AVAILABILITY = [
-  "Frontend internships",
+  "Frontend jobs",
+  "Full stack jobs",
+  "UI/UX designing jobs",
   "React and Next.js project work",
   "UI implementation and optimization",
   "Freelance frontend collaboration",
@@ -137,12 +137,10 @@ export default function WorkingOn() {
           >
             <h3 className="text-white font-semibold mb-3">About</h3>
             <p className="text-sm text-neutral-300 leading-relaxed mb-3">
-              I am a frontend-focused engineer who builds responsive interfaces,
-              clean component systems, and production-ready web flows.
+              Started coding in college when I first fell in love with turning logical conditions into reactive, pixel-perfect user interfaces. Over the last couple of years, my focus has shifted from simple pages to modular frontend architecture and low-latency client systems.
             </p>
             <p className="text-sm text-neutral-400 leading-relaxed">
-              My core focus is shipping software that is usable, reliable, and
-              easy to maintain as products grow.
+              I obsessed over performance tuning and micro-animations, realizing how optimizations like dynamic importing and request debouncing profoundly impact actual accessibility. I built this very portfolio and its custom admin lead analytics pipeline to prove full-stack ownership—spanning database schema triggers, HttpOnly security, and transactional mail queue integrations.
             </p>
           </motion.div>
 

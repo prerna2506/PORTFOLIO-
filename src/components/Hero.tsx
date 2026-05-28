@@ -67,8 +67,7 @@ export default function Hero() {
           {...fadeUp(0.3)}
           className="text-base sm:text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed font-normal px-4"
         >
-          Building production-ready web applications with React, Next.js, and modern UI systems. 
-          Focused on clean code, responsive design, and exceptional user experiences.
+          I enjoy building high-performance frontend interfaces and full-stack React systems with a focus on secure backend integration and clean data flow. Currently diving deep into Next.js App Router performance, state synchronization, and Supabase security.
         </motion.p>
 
         <motion.div
@@ -99,81 +98,11 @@ export default function Hero() {
               className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white hover:bg-neutral-100 text-black text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02]"
             >
               <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-              Resume
+              Download Resume
             </a>
           </div>
-          
-          <a
-            href="#contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-neutral-700 text-neutral-300 hover:text-white hover:bg-neutral-800 text-sm sm:text-base font-medium tracking-wide transition-all duration-300 hover:scale-[1.02]"
-          >
-            <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
-            Contact
-          </a>
-        </motion.div>
-
-        <motion.div
-          {...fadeUp(0.5)}
-          className="flex items-center justify-center gap-6 sm:gap-8 mb-8 sm:mb-12 px-4"
-        >
-          {[
-            {
-              href: "https://github.com/prerna2506",
-              icon: <GithubIcon className="w-4 h-4 sm:w-5 sm:h-5" />,
-              label: "GitHub",
-            },
-            {
-              href: "https://www.linkedin.com/in/prerna-singh1/",
-              icon: <LinkedinIcon className="w-4 h-4 sm:w-5 sm:h-5" />,
-              label: "LinkedIn",
-            },
-            {
-              href: "mailto:workprerna6@gmail.com",
-              icon: <Mail className="w-4 h-4 sm:w-5 sm:h-5" />,
-              label: "Email",
-            },
-          ].map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              target={item.href.startsWith("http") ? "_blank" : undefined}
-              rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="flex items-center gap-2 text-neutral-500 hover:text-white transition-colors duration-300 text-xs sm:text-sm font-medium"
-            >
-              {item.icon}
-              <span className="hidden sm:inline">{item.label}</span>
-            </a>
-          ))}
-        </motion.div>
-
-        <motion.div
-          {...fadeUp(0.6)}
-          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-neutral-400 px-4"
-        >
-          {["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"].map((tech) => (
-            <span
-              key={tech}
-              className="px-2 sm:px-3 py-1 rounded-full bg-neutral-800/50 border border-neutral-700 text-neutral-300 font-medium text-xs sm:text-sm"
-            >
-              {tech}
-            </span>
-          ))}
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-        >
-          <ArrowDown className="w-5 h-5 text-neutral-600" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
