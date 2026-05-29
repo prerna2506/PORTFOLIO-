@@ -2,49 +2,19 @@
 
 import { motion } from "framer-motion";
 
-const SKILL_GROUPS = [
-  {
-    title: "Frontend Development",
-    stack: [
-      { name: "React", level: "Advanced" },
-      { name: "Next.js", level: "Advanced" },
-      { name: "TypeScript", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Advanced" },
-      { name: "Framer Motion", level: "Intermediate" },
-      { name: "JavaScript", level: "Advanced" }
-    ],
-    focus: "Primary specialization with 2+ years experience",
-    icon: "⚛️"
-  },
-  {
-    title: "Backend & Database",
-    stack: [
-      { name: "Node.js", level: "Intermediate" },
-      { name: "Express", level: "Intermediate" },
-      { name: "Supabase", level: "Intermediate" },
-      { name: "REST APIs", level: "Advanced" },
-      { name: "Firebase", level: "Intermediate" },
-      { name: "MongoDB", level: "Intermediate" }
-    ],
-    focus: "Full-stack project integration",
-    icon: "🔧"
-  },
-  {
-    title: "Tools & Deployment",
-    stack: [
-      { name: "Git", level: "Advanced" },
-      { name: "GitHub", level: "Advanced" },
-      { name: "Vercel", level: "Advanced" },
-      { name: "Postman", level: "Intermediate" },
-      { name: "Figma", level: "Intermediate" },
-      { name: "VS Code", level: "Advanced" }
-    ],
-    focus: "Production workflows & collaboration",
-    icon: "🚀"
-  },
-];
+export interface SkillEntry {
+  name: string;
+  level: string;
+}
 
-export default function Skills() {
+export interface SkillGroup {
+  title: string;
+  icon: string;
+  focus: string;
+  skills: SkillEntry[];
+}
+
+export default function Skills({ skillGroups = [] }: { skillGroups?: SkillGroup[] }) {
   return (
     <section
       id="skills"
@@ -71,7 +41,7 @@ export default function Skills() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          {SKILL_GROUPS.map((group, idx) => (
+          {skillGroups.map((group, idx) => (
             <motion.article
               key={group.title}
               initial={{ opacity: 0, y: 12 }}
@@ -92,7 +62,7 @@ export default function Skills() {
               </p>
               
               <div className="space-y-3">
-                {group.stack.map((skill) => (
+                {(group.skills || []).map((skill) => (
                   <div key={skill.name} className="flex items-center justify-between">
                     <span className="text-sm text-neutral-300 font-medium">
                       {skill.name}

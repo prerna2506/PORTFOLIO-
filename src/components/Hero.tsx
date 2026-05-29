@@ -25,7 +25,23 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, ease: "easeOut" as const, delay },
 });
 
-export default function Hero() {
+export interface HeroProps {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  resumeUrl?: string;
+  githubUrl?: string;
+}
+
+export default function Hero({ 
+  title = "Creative Full Stack Developer",
+  subtitle = "I enjoy building high-performance frontend interfaces and full-stack React systems with a focus on secure backend integration and clean data flow. Currently diving deep into Next.js App Router performance, state synchronization, and Supabase security.",
+  ctaText = "View Projects",
+  ctaLink = "#projects",
+  resumeUrl = "/PRERNA_SINGH_Resume.docx",
+  githubUrl = "https://github.com/prerna2506"
+}: HeroProps) {
   return (
     <section
       id="home"
@@ -56,18 +72,14 @@ export default function Hero() {
           {...fadeUp(0.2)}
           className="text-[2.2rem] sm:text-[2.8rem] md:text-[4rem] lg:text-[4.8rem] font-bold tracking-tight leading-[1.1] text-white mb-6"
         >
-          Frontend Developer{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">
-            Crafting Scalable
-          </span>{" "}
-          Web Experiences
+          {title}
         </motion.h1>
 
         <motion.p
           {...fadeUp(0.3)}
           className="text-base sm:text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed font-normal px-4"
         >
-          I enjoy building high-performance frontend interfaces and full-stack React systems with a focus on secure backend integration and clean data flow. Currently diving deep into Next.js App Router performance, state synchronization, and Supabase security.
+          {subtitle}
         </motion.p>
 
         <motion.div
@@ -75,15 +87,15 @@ export default function Hero() {
           className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 px-4"
         >
           <a
-            href="#projects"
+            href={ctaLink}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl"
           >
-            View Projects
+            {ctaText}
           </a>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
             <a
-              href="https://github.com/prerna2506"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-neutral-800 hover:bg-neutral-700 text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] border border-neutral-700"
@@ -93,7 +105,7 @@ export default function Hero() {
             </a>
             
             <a
-              href="/PRERNA_SINGH_Resume.docx"
+              href={resumeUrl}
               download
               className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white hover:bg-neutral-100 text-black text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02]"
             >

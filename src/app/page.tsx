@@ -14,11 +14,18 @@ export const revalidate = 0;
 export default async function Home() {
   const posts = await getAllPosts();
   
-  const { data: dbProjects } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('status', 'published')
-    .order('sort_order', { ascending: true });
+  // Parallel fetching for better performance
+  const [
+    { data: dbProjects },
+    { data: dbExperience },
+    { data: dbSkillGroups },
+    { data: dbSettings }
+  ] = await Promise.all([
+    supabase.from('projects').select('*').eq('status', 'published').order('sort_order', { ascending: true }),
+    supabase.from('experience').select('*').order('sort_order', { ascending: true }),
+    supabase.from('skill_groups').select('*, skills(*)').order('sort_order', { ascending: true }),
+    supabase.from('settings').select('*')
+  ]);
 
   const formattedProjects = (dbProjects || []).map((p) => ({
     id: p.id,
@@ -33,12 +40,28 @@ export default async function Home() {
     features: []
   }));
 
+  const settingsMap = (dbSettings || []).reduce((acc, curr) => {
+    acc[curr.key] = curr.value;
+    return acc;
+  }, {} as Record<string, any>);
+
+  const heroSettings = settingsMap.hero || {};
+  const socials = settingsMap.socials || {};
+  const resume = settingsMap.resume || {};
+
   return (
     <main className="min-h-screen bg-[#0a0a0a]">
-      <Hero />
-      <Skills />
+      <Hero 
+        title={heroSettings.title}
+        subtitle={heroSettings.subtitle}
+        ctaText={heroSettings.ctaText}
+        ctaLink={heroSettings.ctaLink}
+        resumeUrl={resume.resumeUrl}
+        githubUrl={socials.github}
+      />
+      <Skills skillGroups={dbSkillGroups || []} />
       <Projects projects={formattedProjects} />
-      <Experience />
+      <Experience experience={dbExperience || []} />
       <WorkingOn />
       <Blogs posts={posts} />
       <Contact />
