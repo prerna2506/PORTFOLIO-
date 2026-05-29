@@ -3,89 +3,22 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 
-type Project = {
-  id: number;
+export type Project = {
+  id: string | number;
   title: string;
-  category: string;
+  category?: string;
   description: string;
-  problem: string;
-  solution: string;
-  impact: string;
-  features: string[];
+  problem?: string;
+  solution?: string;
+  impact?: string;
+  features?: string[];
   techStack: string[];
   github: string;
   demo: string;
-  status: "Completed" | "In Progress" | "Prototype";
+  status: string;
   featured?: boolean;
 };
 
-const PROJECTS: Project[] = [
-  {
-    id: 1,
-    title: "Full-Stack Contact & Admin System",
-    category: "Full-Stack Product",
-    description: "Production lead capture system with custom JWT admin panel, automated email pipelines, and real-time analytics dashboards.",
-    problem: "Form spam attacks flooding mailboxes, database vulnerability, and environment key exposure on client-side web forms.",
-    solution:
-      "Built API rate-limiting via IP-hashed token buckets, enforced Supabase Row-Level Security (RLS) on all transaction tables, and secured admin sessions with HttpOnly JWT validation.",
-    impact:
-      "Achieved 99.9% spam mitigation, zero key exposure, and transactional mail queue delivery (Resend API) under 800ms.",
-    features: ["IP-hashed rate limiter", "Row-Level Security (RLS)", "Resend Email API Queue", "HttpOnly JWT Authentication", "Real-time db triggers"],
-    techStack: ["Next.js", "TypeScript", "Supabase", "Resend API", "Tailwind CSS"],
-    github: "https://github.com/prerna2506/PORTFOLIO-",
-    demo: "/form",
-    status: "Completed",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Weather Dashboard",
-    category: "Frontend Application",
-    description: "Meteorological dashboard fetching real-time OpenWeather REST payloads. Hardest Problem: Mitigated API query limits by engineering a client-side, in-memory city cache with a 15-minute expiration window, reducing redundant network requests by 70%.",
-    problem: "API rate limits and input latency when searching city weather metrics.",
-    solution:
-      "Built input debouncing to prevent search firing on every keystroke, and wrote cache handlers for weather parameters.",
-    impact:
-      "Cut meteorological API load by 70% and eliminated visual rendering stutter with immediate local storage fallbacks.",
-    features: ["In-memory query caching", "Request input debouncing", "REST OpenWeather API", "Error retry boundaries"],
-    techStack: ["React", "REST API", "JavaScript", "CSS3"],
-    github: "#",
-    demo: "#",
-    status: "Completed",
-  },
-  {
-    id: 3,
-    title: "Interactive Portfolio",
-    category: "Frontend Experience",
-    description: "Scroll-driven storytelling page utilizing hardware-accelerated rendering. Hardest Problem: Sped up continuous scrolling from 35fps to a locked 60fps by replacing standard scroll listeners with IntersectionObservers and batching render paint cycles.",
-    problem: "Continuous scroll event listeners causing layout thrashing and high CPU usage.",
-    solution:
-      "Offloaded canvas animations to requestAnimationFrame, leveraged GPU-accelerated translates, and lazy-loaded interactive submodules.",
-    impact:
-      "100/100 Lighthouse performance score and smooth framerates on lower-spec mobile web views.",
-    features: ["Offscreen canvas frames", "IntersectionObserver API", "Lighthouse optimization", "Dynamic importing"],
-    techStack: ["Next.js", "Framer Motion", "Canvas API", "Tailwind CSS"],
-    github: "https://github.com/prerna2506/PORTFOLIO-",
-    demo: "#",
-    status: "Completed",
-  },
-  {
-    id: 4,
-    title: "AI Background Remover",
-    category: "AI Web Tool",
-    description: "Asynchronous canvas segmentation editor. Hardest Problem: Prevented high-res uploads from crashing browser memory by writing an aspect-ratio resampling helper, scaling raw blobs locally before background removal processing.",
-    problem: "Large high-resolution images crashing local memory during REST payload uploads.",
-    solution:
-      "Implemented a HTML5 Canvas image resizing routine and local blob URL compilation for immediate visual preview.",
-    impact:
-      "Reduced processing payload size by up to 80% and removed upload latency using immediate client-side Object URLs.",
-    features: ["HTML5 Canvas resizing", "Asynchronous segment APIs", "URL.createObjectURL pre-render", "Binary file handling"],
-    techStack: ["JavaScript", "REST API", "Canvas API", "CSS3"],
-    github: "#",
-    demo: "#",
-    status: "Completed",
-  },
-];
 
 const badge = (text: string) => (
   <span
@@ -96,9 +29,9 @@ const badge = (text: string) => (
   </span>
 );
 
-export default function Projects() {
-  const featured = PROJECTS.find((project) => project.featured);
-  const others = PROJECTS.filter((project) => !project.featured);
+export default function Projects({ projects = [] }: { projects?: Project[] }) {
+  const featured = projects.find((project) => project.featured);
+  const others = projects.filter((project) => !project.featured);
 
   if (!featured) return null;
 
@@ -150,34 +83,38 @@ export default function Projects() {
           
           <p className="text-neutral-300 mb-6 leading-relaxed">{featured.description}</p>
 
-          <div className="mb-6">
-            <h4 className="text-sm font-semibold text-white mb-3">Key Features</h4>
-            <div className="flex flex-wrap gap-2">
-              {featured.features.map((feature) => (
-                <span
-                  key={feature}
-                  className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-medium"
-                >
-                  {feature}
-                </span>
+          {featured.features && featured.features.length > 0 && (
+            <div className="mb-6">
+              <h4 className="text-sm font-semibold text-white mb-3">Key Features</h4>
+              <div className="flex flex-wrap gap-2">
+                {featured.features.map((feature) => (
+                  <span
+                    key={feature}
+                    className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-medium"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {featured.problem && featured.solution && featured.impact && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-7">
+              {[
+                { title: "Problem", value: featured.problem },
+                { title: "Solution", value: featured.solution },
+                { title: "Impact", value: featured.impact },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
+                  <p className="text-[0.68rem] font-semibold text-neutral-500 uppercase tracking-[0.1em] mb-2">
+                    {item.title}
+                  </p>
+                  <p className="text-sm text-neutral-300 leading-relaxed">{item.value}</p>
+                </div>
               ))}
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-7">
-            {[
-              { title: "Problem", value: featured.problem },
-              { title: "Solution", value: featured.solution },
-              { title: "Impact", value: featured.impact },
-            ].map((item) => (
-              <div key={item.title} className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
-                <p className="text-[0.68rem] font-semibold text-neutral-500 uppercase tracking-[0.1em] mb-2">
-                  {item.title}
-                </p>
-                <p className="text-sm text-neutral-300 leading-relaxed">{item.value}</p>
-              </div>
-            ))}
-          </div>
+          )}
 
           <div className="mb-7">
             <h4 className="text-sm font-semibold text-white mb-3">Technology Stack</h4>
@@ -255,23 +192,25 @@ export default function Projects() {
                 </a>
               </div>
 
-              <div className="mb-3">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.features.slice(0, 3).map((feature) => (
-                    <span
-                      key={feature}
-                      className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-400 text-xs font-medium"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                  {project.features.length > 3 && (
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-500 text-xs font-medium">
-                      +{project.features.length - 3} more
-                    </span>
-                  )}
+              {project.features && project.features.length > 0 && (
+                <div className="mb-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.features.slice(0, 3).map((feature) => (
+                      <span
+                        key={feature}
+                        className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-400 text-xs font-medium"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                    {project.features.length > 3 && (
+                      <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-500 text-xs font-medium">
+                        +{project.features.length - 3} more
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="flex flex-wrap gap-1.5 mt-auto pt-2">{project.techStack.map(badge)}</div>
             </motion.article>
