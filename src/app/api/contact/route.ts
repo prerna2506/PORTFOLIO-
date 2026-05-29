@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     }
 
     // ✅ 1. Save to database
-    const { error } = await supabase.from("contacts").insert([
+    const { error } = await supabase.from("messages").insert([
       {
         name: body.name,
         email: body.email,
