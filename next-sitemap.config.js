@@ -4,7 +4,14 @@ module.exports = {
   generateRobotsTxt: true,
   generateIndexSitemap: false,
 
-  additionalPaths: async (config) => [
-    await config.transform(config, '/'),
-  ],
+  additionalPaths: async (config) => {
+    return [
+      {
+        loc: '/',
+        changefreq: 'weekly',
+        priority: 1.0,
+        lastmod: new Date().toISOString(),
+      },
+    ]
+  },
 }
